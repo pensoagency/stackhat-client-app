@@ -16,13 +16,13 @@ switch (clientBaseUri) {
   case "localhost":
     clientBaseUri += `:${location.port}` // append port
     switch (location.port) {
-      case "4001":
+      case "5001":
         config = DevConfig
         break
-      case "4002":
+      case "5002":
         config = DevTestConfig
         break
-      case "4003":
+      case "5003":
         config = DevDemoConfig
         break
       default:

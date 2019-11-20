@@ -35,7 +35,7 @@ switch (clientBaseUri) {
   case "demo":
     config = DemoConfig
     break
-  case "live":
+  case "stackhat.pensoagency.com":
     config = LiveConfig
     break
   default:

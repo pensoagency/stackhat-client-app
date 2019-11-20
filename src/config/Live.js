@@ -1,5 +1,5 @@
 export default {
-  apiServiceBaseUri: "https://example.com/",
+  apiServiceBaseUri: "https://stackhat-api.pensoagency.com/",
 
   auth: {
     versionCheck: {

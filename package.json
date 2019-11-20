@@ -10,8 +10,9 @@
     "prodtest": "webpack-dev-server --mode production --config config/webpack.prodtemp.config.js --open --history-api-fallback --port 5002",
     "debug": "webpack --mode development --config config/webpack.base.config.js --env.NODE_ENV=development --progress",
     "predist": "webpack --mode production --config config/webpack.prodtemp.config.js --env.NODE_ENV=production --progress",
+    "patchdist": "npm version patch -f && webpack --mode production --config config/webpack.prodtemp.config.js --env.NODE_ENV=production --progress",
     "prod": "webpack --mode production --config config/webpack.prodtemp.config.js --env.NODE_ENV=production --progress",
-    "dist": "npm version patch && git push origin && git push origin --tags && webpack --mode production --config config/webpack.prodtemp.config.js --env.NODE_ENV=production --progress"
+    "dist": "npm version minor && git push origin && git push origin --tags && webpack --mode production --config config/webpack.prodtemp.config.js --env.NODE_ENV=production --progress"
   },
   "repository": {
     "type": "git",

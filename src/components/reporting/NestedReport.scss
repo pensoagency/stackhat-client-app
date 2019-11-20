@@ -1,0 +1,14 @@
+.nested-report {
+  padding: 15px;
+
+  .nested-report__heading {
+    text-overflow: ellipsis;
+    white-space: nowrap;     
+    text-align: center;     
+  }
+  .nested-report__body {
+    padding: 15px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+}

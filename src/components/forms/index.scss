@@ -1,0 +1,18 @@
+@import "./Number";
+@import "./DatePicker";
+@import "./TagsInput";
+@import "./InlineEditable";
+@import "./YearsPicker";
+@import "./RecordSearchInput";
+@import "./Evidence";
+
+.field-description {
+  @extend small;
+  @extend .clearfix;
+}
+
+.form-group {
+  &.no-label {
+    margin-top: 10px;
+  }
+}

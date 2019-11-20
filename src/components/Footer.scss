@@ -1,0 +1,17 @@
+footer {
+  padding-top: 15px;
+  height: 100px;
+  color: #bbb;
+  font-size: 12px;
+}
+.version {
+  @extend .pull-right;
+  margin-right: 15px;
+
+  &.login {
+    position: fixed;
+    right: 15px; 
+    bottom: 15px;
+    color: #666;
+  }
+}

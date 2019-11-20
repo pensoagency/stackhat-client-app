@@ -1,0 +1,35 @@
+.tagsinput__tags {
+
+  margin-top: 5px;
+  display: block;
+
+  .tagsinput-tag {
+
+    background-color: $tagsinput-tag-background-color;
+    color: $tagsinput-tag-color;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 5px;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+
+    a {
+
+      text-decoration: none;
+      cursor: pointer;
+      margin-left: 3px;
+
+      &::before {
+
+        content: " ×";
+        color: $tagsinput-tag-color;
+        
+      }
+    }
+
+    .tagsinput-tag__text {
+      display: block; 
+      padding-right: 13px;
+    }
+  }
+}

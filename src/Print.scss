@@ -1,0 +1,38 @@
+@import "~react-vis/dist/style";
+@import "./components/lists/ItemKeyDataDisplay";
+
+.printer-body {
+
+  * {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  button,
+  input,
+  .no-print {
+    display: none
+  }
+
+  .nopr {
+    display: none
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #eee;
+  }
+
+  .item-data__body {
+    margin-bottom: 20px;
+  }
+
+  .item-key-data__chart>div {
+    height: auto !important;
+  }  
+
+  .item-key-data-wrapper {
+    margin-bottom: 20px;
+  }
+  
+}
+

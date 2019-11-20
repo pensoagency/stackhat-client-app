@@ -1,0 +1,192 @@
+@import "./styles/Variables";
+@import "./styles/Bootstrap";
+@import "./styles/Icons";
+@import "./styles/Hover";
+@import "./styles/Printing";
+@import "./styles/Busy";
+
+@import "~react-toastify/scss/main";
+@import "~react-vis/dist/style";
+@import "~react-bootstrap-slider/src/css/bootstrap-slider.min";
+@import "~react-vertical-timeline-component/style.min";
+@import "~react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min";
+
+@import "./areas/public/Login";
+@import "./areas/account/index";
+@import "./areas/dashboard/index";
+
+@import "./components/Content";
+@import "./components/Header";
+@import "./components/Footer";
+@import "./components/Grid";
+@import "./components/LoadingBar";
+@import "./components/errors/index";
+@import "./components/panels/PanelComponent";
+@import "./components/panels/PanelHeadingFunctions";
+@import "./components/forms/index";
+@import "./components/lists/ItemDataDisplay";
+@import "./components/lists/ItemEditor";
+@import "./components/lists/ItemEditorSection";
+@import "./components/lists/ItemList";
+@import "./components/lists/ItemKeyDataDisplay";
+@import "./components/modals/Modal";
+@import "./components/navigation/SubNavArea";
+@import "./components/navigation/SubNav";
+@import "./components/navigation/PanelLink";
+@import "./components/navigation/TagList";
+@import "./components/navigation/Tag";
+@import "./components/navigation/NavLinkItem";
+@import "./components/navigation/Paginator";
+@import "./components/print/PrintFrame";
+@import "./components/reporting/NestedReport";
+@import "./components/reporting/ReportPanel";
+@import "./components/help/Help";
+
+body {
+  background-color: #f9f9f9;
+}
+
+.main {
+  background-color: #fff;
+  margin-top: -17px;
+  padding: 20px 0 30px 15px;
+}
+
+.equal-height {
+  height: 100%;
+}
+
+.size-2 {
+  width: 350px !important;
+}
+
+.validation-error {
+  color: red;
+}
+
+th.btn-col,
+td.btn-col {
+  text-align: right;
+  vertical-align: middle;
+  button {
+    width: 40px;
+  }
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+}
+
+span {
+  font-size: inherit;
+}
+
+.quick-item-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+
+    .quick-item-list__link {
+      width: 70%;
+      display: inline-block;
+    }
+
+    padding: 10px 0;
+    border-bottom: solid 1px #eee;
+    margin: 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      border: none;
+      padding-bottom: 0;
+    }
+    .fa {
+      color: #337ab7;
+    }    
+  }
+
+  &.quick-item-list--activity {
+    overflow: hidden;    
+
+    li {
+      border-bottom: none;
+      padding-left: 30px;
+      overflow: hidden;   
+      min-height: 25px;       
+
+      .quick-item-list__link {
+        width: auto;
+      }
+
+      .fa {
+        position: absolute;
+        margin-left: -30px;
+        vertical-align: top;
+        color: #000;
+        z-index: 1;
+        background-color: #ccc;
+        padding: 5px;
+        border-radius: 10px;
+      }
+
+      &:before {
+        content:"";
+        position: absolute;
+        z-index: 0;
+        margin-top: -10px;        
+        margin-left: -20px;        
+        width: 1px;
+        min-height: 50px;
+        border-left: 2px dashed #ccc;
+        
+      }         
+      
+    }
+  }
+
+}
+
+.quick-item-table {
+  tbody {
+    tr {
+      border: none;
+      td {
+        padding: 8px 4px;
+        border-bottom: solid 1px #eee;
+      }
+      &:first-child {
+        td {
+          border-top: none !important;
+        }
+      }
+      &:last-child {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+pre {
+  font-family: $font-family-sans-serif;
+  margin: 0;
+}
+.format-text {
+  white-space: pre-wrap;
+}
+
+
+.limit-link {
+  max-width: 220px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.version-notify {
+  padding: 5px;
+}

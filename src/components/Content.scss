@@ -1,0 +1,13 @@
+.content {
+  overflow: auto;
+
+  &.content-full {
+    margin-left: -15px;
+    //margin-right: -15px;
+    padding-left: 0;
+  }
+}
+
+.clickable { 
+  cursor: pointer;
+}

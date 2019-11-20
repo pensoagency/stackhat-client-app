@@ -1,0 +1,16 @@
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 300px;
+}
+
+.public #nprogress .spinner {
+  right: 14px !important;
+}
+
+#nprogress .spinner-icon {
+  width: 22px;
+  height: 22px;
+}

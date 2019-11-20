@@ -1,0 +1,27 @@
+.item-key-data-wrapper {
+  width: 33%;
+  display: inline-block;
+  margin-right: 0.3333%;
+  margin-bottom: 5px;
+  .item-key-data {
+    padding: 10px;
+    width: 100%;
+    border: solid 1px #eeeeee;
+    &.item-key-data--full {
+      width: 100%;
+    }
+    .item-key-data__icon {
+      width: 30px;
+      padding-top: 3px;
+      text-align: center;
+    }
+    .item-key-data__body {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .item-key-data__list {
+      padding-left: 20px;
+      margin-left: 0;
+    }
+  }
+}

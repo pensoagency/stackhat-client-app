@@ -1,0 +1,29 @@
+.report-panel {
+  .panel-heading {
+    height: 38px;
+    text-overflow: ellipsis;
+    // overflow: hidden;
+    white-space: nowrap;     
+
+    .report-select {
+      padding:0;
+      margin:0;
+      text-decoration: none;
+      color: #333;
+      
+      .caret {
+        margin-left: 5px;
+        color: #999;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }      
+  }
+  .panel-body {
+    padding: 15px 0;
+    text-align: center;
+    overflow: hidden;
+  }
+}

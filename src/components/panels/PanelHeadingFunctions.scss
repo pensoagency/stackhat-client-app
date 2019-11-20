@@ -1,0 +1,56 @@
+.panel {
+  .panel-heading {
+    .panel-heading-icon {
+      margin-right: 8px;
+    }
+
+    .panel-heading__functions {
+      @extend .pull-right;
+      margin-top: -2px;
+      margin-right: -10px;
+
+      button {
+        color: #ccc;
+        transition: 0.4s;
+
+        &.collapsible {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .panel-heading {
+      .panel-heading__functions {
+
+        button,
+        a {
+          color: #337ab7;
+          outline: none;
+
+          &:hover {
+            color: #48aaff;
+          }
+        }
+      }
+    }
+  }
+
+  &.panel-primary:hover {
+    .panel-heading {
+      .panel-heading__functions {
+
+        button,
+        a {
+          color: #fff;
+          outline: none;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

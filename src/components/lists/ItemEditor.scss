@@ -1,0 +1,25 @@
+.item-editor {
+  .item-editor__heading {
+    margin-top: 5px;
+
+    .form-control {
+      width: 90%;
+    }
+  }
+  .item-editor__section {
+    margin-bottom: 15px;
+  }
+  // .panel-body {
+  //   .fa {
+  //     color: #337ab7;
+  //   }
+  // }
+
+  .tab-content {
+    padding: 10px;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #ddd;
+    
+  }
+}

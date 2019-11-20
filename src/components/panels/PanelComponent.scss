@@ -1,0 +1,31 @@
+.panel-tools {
+  display: block;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #ddd;
+
+  .form-group>* {
+    margin-right: 5px;
+  }
+  .form-group.pull-right>* {
+    margin-right: 0;
+    margin-left: 5px;
+  }
+
+  .rbt-input {
+    width: 100% !important;
+  }
+
+  .rbt-menu {
+    width: auto !important;
+  }
+
+  &.panel-tags {
+    padding-bottom: 5px;
+  }
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
+}
+

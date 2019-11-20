@@ -1,0 +1,11 @@
+a.panel-link {
+  color: inherit;
+  text-decoration: none;
+
+  &.active .panel {
+    background-color: #46abc8;
+    border-color: #999;
+    color: #fff;
+  }
+}
+

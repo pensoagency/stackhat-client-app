@@ -1,0 +1,21 @@
+.hover-parent {
+  .hover-child {
+    display: inline-block;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s linear;
+    transition: opacity 0.2s linear;
+  }
+
+  .hover-child-hidden {
+    display: none;
+  }
+
+  &:hover {
+    .hover-child {
+      opacity: 1;
+    }
+    .hover-child-hidden {
+      display: inline-block;
+    }
+  }
+}

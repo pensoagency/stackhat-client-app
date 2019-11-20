@@ -1,0 +1,32 @@
+.inline-editable-wrapper {
+  display: inline-block;
+  min-width: 75%;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: text;
+
+  textarea {
+    min-height: 250px;
+    width: 100%;
+  }    
+
+  &.inline-tags-input {
+    min-width: 100%;
+
+    .rbt {
+      display: inline-block;
+      min-width: 75%;
+    }
+    button {
+      display: inline-block;
+    }    
+  }  
+}
+
+span.inline-editable, div.inline-editable {
+  &:hover {
+    background-color: #f9f9f9;
+    outline: #cccccc dashed 1px;
+  }
+
+}

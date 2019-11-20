@@ -1,0 +1,36 @@
+$tagsinput-tag-background-color: #5cb85c;
+$tagsinput-tag-color: #ffffff;
+
+$nav-item-active-border-color: #46abc8;
+
+$subnav-item-active-background-color: #46abc8;
+$subnav-item-active-color: #ffffff;
+
+$border-radius-base:        3px !default;
+
+//== Navbar
+//
+//##
+$navbar-default-color: #C8C8C8 !default;
+$navbar-default-bg: #3A3F44 !default;
+
+// Navbar links
+$navbar-default-link-color:                #C8C8C8 !default;
+$navbar-default-link-hover-color:          #fff !default;
+$navbar-default-link-hover-bg:             darken($navbar-default-bg, 8%) !default;
+$navbar-default-link-active-color:         #fff !default;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 8%) !default;
+$navbar-default-link-disabled-color:       #ccc !default;
+$navbar-default-link-disabled-bg:          transparent !default;
+
+
+$font-size-base: 13px !default;
+$line-height-base: 1.328;
+
+* {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+
+@import './ThemeVariables.scss'

@@ -1,0 +1,20 @@
+@media print {
+}
+
+.pr {
+  display: none;
+}
+
+.record-print {
+  
+  .item-editor-section {
+    background-color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 6px;
+
+    .btn-col, .record-search-input, button { display: none }
+  }
+
+}

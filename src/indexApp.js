@@ -17,8 +17,6 @@ import {
 import './Styles.scss'
 import './Print.scss'
 
-//let ver = require('./version.json')
-
 import ErrorBoundary from './components/errors/ErrorBoundary'
 import Master from './areas/Master'
 

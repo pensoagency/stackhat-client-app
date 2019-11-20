@@ -90,16 +90,10 @@ class Login extends React.Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer, mode, sso, message } = this.state
+    const { mode, sso, message } = this.state
 
     if (this.props.Authentication.IsAuthenticated) {
-      if (this.props.Settings.user && this.props.Settings.user.start_module)
-        return <Redirect to={this.props.Settings.user.start_module} />
-      else {
-        this.props.Authentication.SignOut()
-        return <Redirect to="/" />
-      }
+      return <Redirect to={"/audit"} />
     }
 
     return (
@@ -139,4 +133,4 @@ class Login extends React.Component {
   }
 }
 
-export default inject("Settings", "Authentication","Stores")(Login)
+export default inject("Settings", "Authentication", "Stores")(Login)

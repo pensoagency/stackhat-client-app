@@ -14,7 +14,8 @@ import PrivateRoute from '../components/routing/PrivateRoute'
 import PrintFrame from '../components/print/PrintFrame'
 
 import Login from './public/Login'
-import Dashboard from './dashboard'
+import Audit from './audit/Audit'
+import Stack from './stack/Stack'
 import Account from './account'
 import Logout from './public/Logout'
 import Password from './public/Password'
@@ -66,8 +67,8 @@ class Master extends React.Component {
             <Switch>
               <Route exact path='/' component={Login} />
               <Route exact path='/password' component={Password} />
-              <PrivateRoute path='/dashboard' component={Dashboard} />
-              <PrivateRoute path='/dashboard/*' component={Dashboard} />
+              <PrivateRoute path='/audit' component={Audit} />
+              <PrivateRoute path='/stack' component={Stack} />
               <PrivateRoute path='/account' component={Account} />
               <PrivateRoute path='/account/*' component={Account} />
               <Route path='/logout' component={Logout} />

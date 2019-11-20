@@ -1,10 +1,13 @@
 import { decorate, observable, action, runInAction } from 'mobx'
 import LocalStorage from 'local-storage'
+import Config from 'react-global-configuration'
 
 import Api from '../services/Api'
 import Notify from '../services/Notify'
 
 import ClientSettingStore from './ClientSettingStore'
+
+let auth = Config.get("auth")
 
 class AuthenticationStore {
 
@@ -15,6 +18,15 @@ class AuthenticationStore {
   Initialise() {
     let authData = getLocalStorage()
 
+    if (auth.fakeAuth) {
+      authData = getPrincipal({ userName: "Developer" }, {
+        access_token: "fake",
+        userId: "fake",
+        firstName: "Paul",
+        lastName: "Stephenson",
+      })
+    }
+
     return new Promise((resolve, reject) => {
 
       if (authData) {
@@ -23,14 +35,16 @@ class AuthenticationStore {
             this.IsAuthenticated = true
             this.Principal = authData
           })
-          this.Settings.Load(this.Principal.userId, this.Principal.organisation)
-            .then(() => {
-              resolve()
-            }).catch((err) => {
-              this.SignOut(() => {
-                resolve()
-              })
-            })
+          resolve()
+
+          // this.Settings.Load(this.Principal.userId, this.Principal.organisation)
+          //   .then(() => {
+          //     resolve()
+          //   }).catch((err) => {
+          //     this.SignOut(() => {
+          //       resolve()
+          //     })
+          //   })
 
         } else {
           runInAction(() => {
@@ -142,10 +156,6 @@ function getPrincipal(loginData, response) {
       userId: "",
       firstName: "",
       lastName: "",
-      organisation: null,
-      person: null,
-      license: null,
-      roles: []
     }
   } else {
     let result = {
@@ -155,10 +165,6 @@ function getPrincipal(loginData, response) {
       userId: response.userId,
       firstName: response.firstName,
       lastName: response.lastName,
-      organisation: response.organisation,
-      person: response.person,
-      license: JSON.parse(response.license),
-      roles: (""+response.roles).split(",").map((s) => s.toLowerCase()),
     }
     console.log("[AUTH][GP]", result)  
     return result      

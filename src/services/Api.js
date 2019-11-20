@@ -57,7 +57,7 @@ class Api {
     }
 
     // entities
-    this.Example = new AxiosResource({ url: `${serviceBase}api/Examples`, idName: "ExampleID", params: { } })
+    this.Databases = new AxiosResource({ url: `${serviceBase}api/Databases`, idName: "DatabaseID", params: { } })
 
     this.AppUsers = new AxiosResource({ url: `${serviceBase}api/AppUsers`, idName: "AppUserID", params: { } })
     this.AppRoles = new AxiosResource({ url: `${serviceBase}api/AppRoles`, idName: "AppRoleID" })

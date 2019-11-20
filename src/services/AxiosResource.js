@@ -54,7 +54,7 @@ class Resource {
     })
   }
 
-  query(useless, params, cancelToken) {
+  query(params, cancelToken) {
     this.log("QUERY", params, `${this.config.url}`)
     return Axios.get(`${this.config.url}`, {
       headers: this.getHeaders(),
@@ -66,7 +66,7 @@ class Resource {
     })
   }
 
-  list(useless, params, cancelToken) {
+  list(params, cancelToken) {
     this.log("LIST", params, `${this.config.url}`)
     return Axios.get(`${this.config.url}`, {
       headers: this.getHeaders(),

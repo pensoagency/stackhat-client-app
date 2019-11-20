@@ -39,7 +39,8 @@ class Header extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <NavLinkItem to="/dashboard" isActive={location.pathname.startsWith("/dashboard")} text="Home" icon="home" />
+                <NavLinkItem to="/audit" isActive={location.pathname.startsWith("/audit")} text="Create Audit" icon="laptop-code" />
+                <NavLinkItem to="/stack" isActive={location.pathname.startsWith("/stack")} text="Manage Stack" icon="layer-group" />                
               </Nav>
               <Nav pullRight>
                 {/* <NavButtonItem icon="question-circle" title={showHelp ? "Turn Reveal Help Off" : "Turn Reveal Help On"} onClick={this.handleToggleHelp} className={showHelp ? "help-toggle help-active" : "help-toggle help-inactive"} /> */}

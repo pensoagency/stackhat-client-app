@@ -7,6 +7,7 @@ export default {
   showConfigInTitle: false,
 
   auth: {
+    fakeAuth: true, // TODO: Set to false / do not commit
     idleTimeoutMs: (1000 * 60) * 15, //  15 minutes
     //idleTimeoutMs: 3000, // 3 seconds, for testing
     versionCheck: {

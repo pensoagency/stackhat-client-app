@@ -35,6 +35,7 @@ switch (clientBaseUri) {
   case "demo":
     config = DemoConfig
     break
+  case "stackhat.s3-website-ap-southeast-2.amazonaws.com":
   case "stackhat.pensoagency.com":
     config = LiveConfig
     break

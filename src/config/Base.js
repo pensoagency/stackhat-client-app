@@ -15,6 +15,7 @@ export default {
       //intervalMs: (2000), // 2 seconds, for testing      
     },
     oidc: {
+      tenant_id: "stackhat",
       client_id: "347178351697-p2f0ajtrpis4nr7jqr2aarg34vvuadqq.apps.googleusercontent.com",
       authority: "https://accounts.google.com",
     }

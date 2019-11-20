@@ -9,10 +9,10 @@ class OidcAuthenticationContext {
     console.log("[OIDC]", config)    
 
     this.adalContext = new AuthenticationContext({
-      tenant: hash.tid,
-      clientId: hash.cid,
+      tenant: config.tenant_id,
+      clientId: config.client_id,
       endpoints: {
-        api: hash.cid
+        api: config.api
       },
       cacheLocation: 'sessionStorage'
     })

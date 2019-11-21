@@ -9,7 +9,7 @@ class Footer extends React.Component {
 
       return (
         <footer className="text-center">
-          &copy; My Company Ltd
+          <a href="https://pensoagency.com" tabIndex="_blank" className="penso" title="PENSO"></a>
           <span className="version">v{Version}</span>
         </footer>
       )

@@ -5,27 +5,24 @@ import { Style } from 'react-style-tag'
 class Theme extends React.Component {
 
   render() {
-    let auth = this.props.Authentication
 
-    if (auth.IsAuthenticated) {
-      let {
-        theme_header_bgcolour,
-        theme_footer_bgcolour,
-        theme_header_nav_colour,
-        theme_header_nav_hover_colour,
-        theme_header_nav_active_colour,
-        theme_header_nav_active_bgcolour,
-        theme_header_nav_hover_bgcolour,
-        theme_subnav_colour,
-        theme_subnav_active_bgcolour,
-        theme_button_primary_bgcolour,
-        theme_button_primary_colour,
-        theme_button_bgcolour,
-        theme_button_colour,        
-      } = auth.Settings.org
+    let theme_header_bgcolour = "#25273a",
+      theme_footer_bgcolour = "#25273a",
+      theme_header_nav_colour = "#fff",
+      theme_header_nav_hover_colour = "#c2b896",
+      theme_header_nav_active_colour = "#fff",
+      theme_header_nav_active_bgcolour = "#555",
+      theme_header_nav_hover_bgcolour = "#555",
+      theme_subnav_colour,
+      theme_subnav_active_bgcolour,
+      theme_button_primary_bgcolour,
+      theme_button_primary_colour,
+      theme_button_bgcolour,
+      theme_button_colour
 
-      return (
-        <Style>{`
+
+    return (
+      <Style>{`
           body { background-color: ${theme_footer_bgcolour} !important; }
           .navbar-default { background-color: ${theme_header_bgcolour} !important; }
           .navbar-nav a:not(.active) { color: ${theme_header_nav_colour} !important; }
@@ -36,11 +33,8 @@ class Theme extends React.Component {
           .btn-primary { color: ${theme_button_primary_colour}; background-color: ${theme_button_primary_bgcolour} !important; }
           .btn-default { color: ${theme_button_colour}; background-color: ${theme_button_bgcolour} !important; }          
         `}</Style>
-      )
-    }
-    else {
-      return null
-    }
+    )
+
   }
 }
 

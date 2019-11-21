@@ -1,0 +1,12 @@
+{
+    "deploy": {
+        "targets": [
+            {
+                "type": "s3bucket",
+                "name": "Stackhat Live S3 Static Hosting",
+                "description": "",
+                "bucket": "stackhat"
+            }
+        ]
+    }
+}

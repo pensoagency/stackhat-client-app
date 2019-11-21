@@ -38,7 +38,7 @@ class AuditForm {
       },
       types: {
         "Name": "text",
-        "Urls": "urls",
+        "Urls": "textarea",
       },
       values: {
       },
@@ -47,7 +47,8 @@ class AuditForm {
         "Urls": "required",
       },
       placeholders: {
-        "Title": "Enter a descriptive name for the audit...",
+        "Name": "Enter a descriptive name for the audit...",
+        "Urls": "One URL per line..."
       },
       extra: {
       }

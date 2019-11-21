@@ -50,7 +50,7 @@ body {
 .main {
   background-color: #fff;
   margin-top: -17px;
-  padding: 20px 0 30px 15px;
+  padding: 20px 0 55px 15px;
 }
 
 .equal-height {
@@ -69,6 +69,7 @@ th.btn-col,
 td.btn-col {
   text-align: right;
   vertical-align: middle;
+
   button {
     width: 40px;
   }
@@ -88,6 +89,7 @@ span {
   margin: 0;
   padding: 0;
   list-style: none;
+
   li {
 
     .quick-item-list__link {
@@ -98,26 +100,29 @@ span {
     padding: 10px 0;
     border-bottom: solid 1px #eee;
     margin: 0;
+
     &:first-child {
       padding-top: 0;
     }
+
     &:last-child {
       border: none;
       padding-bottom: 0;
     }
+
     .fa {
       color: #337ab7;
-    }    
+    }
   }
 
   &.quick-item-list--activity {
-    overflow: hidden;    
+    overflow: hidden;
 
     li {
       border-bottom: none;
       padding-left: 30px;
-      overflow: hidden;   
-      min-height: 25px;       
+      overflow: hidden;
+      min-height: 25px;
 
       .quick-item-list__link {
         width: auto;
@@ -135,17 +140,17 @@ span {
       }
 
       &:before {
-        content:"";
+        content: "";
         position: absolute;
         z-index: 0;
-        margin-top: -10px;        
-        margin-left: -20px;        
+        margin-top: -10px;
+        margin-left: -20px;
         width: 1px;
         min-height: 50px;
         border-left: 2px dashed #ccc;
-        
-      }         
-      
+
+      }
+
     }
   }
 
@@ -155,15 +160,18 @@ span {
   tbody {
     tr {
       border: none;
+
       td {
         padding: 8px 4px;
         border-bottom: solid 1px #eee;
       }
+
       &:first-child {
         td {
           border-top: none !important;
         }
       }
+
       &:last-child {
         td {
           border-bottom: none;
@@ -177,6 +185,7 @@ pre {
   font-family: $font-family-sans-serif;
   margin: 0;
 }
+
 .format-text {
   white-space: pre-wrap;
 }
@@ -190,4 +199,16 @@ pre {
 
 .version-notify {
   padding: 5px;
+}
+
+.title {
+  margin-bottom: 20px;
+
+  .title-buttons {
+    @extend .pull-right;
+
+    button {
+      margin-left: 10px;
+    }
+  }
 }

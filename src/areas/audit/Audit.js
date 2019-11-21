@@ -31,8 +31,10 @@ class Audit extends React.Component {
       <Row>
         <Col md={8} mdOffset={2} sm={12}>
           <form autoComplete="off">
+            <div className="title">
+              <h1 className="h2">Create New Audit</h1>
+            </div>
             <Panel>
-              <Panel.Heading>Create New Audit</Panel.Heading>
               <Panel.Body>
                 <ItemCreatorFields form={this.form} fields={this.auditForm.fieldInfo.fields} />
               </Panel.Body>
@@ -41,11 +43,13 @@ class Audit extends React.Component {
           </form>
         </Col>
       </Row>
-      <hr />
+      {/* <hr />
       <Row>
         <Col md={8} mdOffset={2} sm={12}>
+          <div className="title">
+            <h1 className="h2">Audit History (Local Storage)</h1>
+          </div>
           <Panel>
-            <Panel.Heading>Audit History (Local Storage)</Panel.Heading>
             <Panel.Body>
               <Table striped condensed hover>
                 <thead>
@@ -53,7 +57,7 @@ class Audit extends React.Component {
                     <th></th>
                     <th>Created</th>
                     <th>Name</th>
-                    <th>ID</th>                    
+                    <th>ID</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,7 +66,7 @@ class Audit extends React.Component {
                       <td><Button>Download</Button></td>
                       <td>{a.Created}</td>
                       <td>{a.Name}</td>
-                      <td>{a.DatabaseID}</td>                      
+                      <td>{a.DatabaseID}</td>
                     </tr>
                   )}
                 </tbody>
@@ -70,7 +74,7 @@ class Audit extends React.Component {
             </Panel.Body>
           </Panel>
         </Col>
-      </Row>
+      </Row> */}
     </Grid>
   }
 

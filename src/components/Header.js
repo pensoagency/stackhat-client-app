@@ -33,7 +33,9 @@ class Header extends React.Component {
           <Navbar staticTop fluid>
             <Navbar.Header>
                 <Navbar.Brand className="logo">
+                  <div>
                   <a href="/">Stack<span className="logo-shaded">Hat</span></a>
+                  </div>
                 </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>

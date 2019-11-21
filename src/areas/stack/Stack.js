@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Grid, Row, Col, Panel, Table } from 'react-bootstrap'
+import { Grid, Row, Col, Panel, Table, Button } from 'react-bootstrap'
+import Icon from 'react-fontawesome'
 import { observer, inject } from 'mobx-react'
+import { PanelHeadingFunctions, PanelHeadingButton } from '../../components/panels'
 
 class Stack extends React.Component {
 
@@ -23,16 +25,24 @@ class Stack extends React.Component {
     return <Grid fluid>
       <Row>
         <Col md={8} mdOffset={2} sm={12}>
-          <h1 class="h2">Manage Stack</h1>
-          
-          <Panel>
-            <Panel.Heading><strong>Categories</strong></Panel.Heading>
-            <Panel.Body>
+
+          <div className="title">
+            <div className="title-buttons">
+              <Button>Reorder Categories</Button>
+              <Button bsStyle="primary">Add New Technology</Button>
+            </div>
+            <h1 className="h2">Manage Stack</h1>
+          </div>
+
+          {this.state.showAddTechnology && <TechnologyEditorModal />}
 
           {this.state.categories.map((cat, index) =>
             <Panel key={index}>
               <Panel.Heading className="clickable" onClick={() => this.handleToggleExpanded(index, cat.expanded)}>
                 <Panel.Title>
+                  <PanelHeadingFunctions>
+                    <PanelHeadingButton title={cat.expanded ? "Collapse" : "Expand"} icon={cat.expanded ? "minus-square" : "plus-square"} onClick={() => this.handleToggleExpanded(index, cat.expanded)} />
+                  </PanelHeadingFunctions>
                   {cat.name} <em><small>({cat.technologies.length})</small></em>
                 </Panel.Title>
               </Panel.Heading>
@@ -54,8 +64,7 @@ class Stack extends React.Component {
               </Panel.Body>}
             </Panel>
           )}
-          </Panel.Body>
-          </Panel>
+
         </Col>
       </Row>
     </Grid>

@@ -56,24 +56,10 @@ class ItemCreatorFields extends React.Component {
       switch (field.type) {
         case "datepicker":
           return (<DatePicker key={field.name} field={field} />)
-        case "organisationpicker":
-          return (<OrganisationPicker key={field.name} field={field} />)
-        case "organisationunitpicker":
-          return (<OrganisationUnitPicker key={field.name} field={field} />)
-        case "personpicker":
-          return (<PersonPicker key={field.name} field={field} />)
-        case "indorganisationpicker":
-          return (<IndustryOrganisationPicker key={field.name} field={field} />)
         case "tagsinput":
           return (<TagsInput key={field.name} field={field} {...field.extra} />)
         case "dropdown":
           return (<DropDown key={field.name} field={field} />)
-        case "template_fields":
-          return (<TemplateFields key={field.name} form={form} field={field} />)
-        case "template_fields_listing":
-          return (<TemplateFieldsListing key={field.name} form={form} field={field} />)
-        case "template_fields_editor":
-          return (<TemplateFieldsEditor key={field.name} form={form} field={field} />)
         case "select":
         case "checkboxes":
           return (<ModalFormField key={field.name} field={field} />)
@@ -81,8 +67,6 @@ class ItemCreatorFields extends React.Component {
           return (<TextArea key={field.name} field={field} />)
         case "number":
           return (<Number key={field.name} field={field} />)
-        case "evidence":
-          return (<Evidence key={field.name} field={field} />)
         case "hidden":
           return (<FormControl key={field.name} {...field.bind()} />)
         default:

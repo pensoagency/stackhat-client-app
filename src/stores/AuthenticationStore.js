@@ -69,7 +69,7 @@ class AuthenticationStore {
 console.log(response)
         // set principal
         runInAction(() => {
-          this.Principal = getPrincipal({ userName: credentials.userName }, { token: response.data });
+          this.Principal = getPrincipal({ userName: credentials.userName }, { access_token: response.data });
         })
 
         // set local storage 

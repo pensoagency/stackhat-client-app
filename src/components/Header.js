@@ -46,7 +46,7 @@ class Header extends React.Component {
               </Nav>
               <Nav pullRight>
                 {/* <NavButtonItem icon="question-circle" title={showHelp ? "Turn Reveal Help Off" : "Turn Reveal Help On"} onClick={this.handleToggleHelp} className={showHelp ? "help-toggle help-active" : "help-toggle help-inactive"} /> */}
-                <NavLinkItem to="/" title={name} text={initials} />
+                <NavLinkItem to="#" title={name} text={initials} />
                 <NavLinkItem to="/logout" text="Sign Out" icon="sign-out-alt" />
               </Nav>
             </Navbar.Collapse>

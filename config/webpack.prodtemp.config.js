@@ -85,7 +85,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin("../dist/*.*", { allowExternal: true }),
     new HtmlWebpackPlugin({ 
-      title: 'New App',
+      title: 'StackHat',
       template: './src/index.html', 
       filename: './index.html',
       hash: true,

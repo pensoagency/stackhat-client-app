@@ -3,7 +3,7 @@ import { extend } from 'lodash'
 import Notify from '../services/Notify'
 import Api from '../services/Api'
 
-configure({ enforceActions: "observed" })
+// configure({ enforceActions: "observed" })
 
 class ClientSettingStore {
 

@@ -1,5 +1,5 @@
 export default {
-  apiServiceBaseUri: "unset",
+  apiServiceBaseUri: "https://stackhat-api.pensoagency.com/StackhatServer/webapi/",
 
   showConfigInTitle: true,
   configTitle: "[DEV]",

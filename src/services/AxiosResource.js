@@ -70,7 +70,7 @@ class Resource {
     this.log("LIST", params, `${this.config.url}`)
     return Axios.get(`${this.config.url}`, {
       headers: this.getHeaders(),
-      transformResponse: this.transformResponseList,
+      //transformResponse: this.transformResponseList,
       params: this.getParams(params),
       cancelToken: cancelToken
     }).then(response => {

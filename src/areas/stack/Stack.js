@@ -5,6 +5,7 @@ import Icon from 'react-fontawesome'
 import { observer, inject } from 'mobx-react'
 import { PanelHeadingFunctions, PanelHeadingButton } from '../../components/panels'
 import TechnologyModal from './modals/TechnologyModal'
+import { BusySpinner } from '../../components/modals'
 
 class Stack extends React.Component {
 
@@ -16,10 +17,12 @@ class Stack extends React.Component {
     ]
   }
 
-  handleToggleExpanded = (index, current) => {
-    let stateCopy = Object.assign({}, this.state)
-    stateCopy.categories[index].expanded = !current
-    this.setState(stateCopy)
+  componentDidMount() {
+    this.props.StackStore.Load()
+  }
+
+  handleToggleExpanded = (cat) => {
+    cat.expanded = !cat.expanded
   }
 
   handleAddNewTechnology = () => {
@@ -27,6 +30,9 @@ class Stack extends React.Component {
   }
 
   render() {
+    let { StackStore } = this.props
+
+    let isBusy = StackStore.IsLoading
 
     return <Grid fluid>
       <Row>
@@ -42,14 +48,15 @@ class Stack extends React.Component {
 
           {this.state.showAddTechnology && <TechnologyModal onHide={this.handleAddNewTechnology} />}
 
-          {this.state.categories.map((cat, index) =>
+          {isBusy && <BusySpinner />}
+          {!isBusy && StackStore.Items.map((cat, index) =>
             <Panel key={index}>
-              <Panel.Heading className="clickable" onClick={() => this.handleToggleExpanded(index, cat.expanded)}>
+              <Panel.Heading className="clickable" onClick={() => this.handleToggleExpanded(cat)}>
                 <Panel.Title>
                   <PanelHeadingFunctions>
                     <PanelHeadingButton title={cat.expanded ? "Collapse" : "Expand"} icon={cat.expanded ? "minus-square" : "plus-square"} onClick={() => this.handleToggleExpanded(index, cat.expanded)} />
                   </PanelHeadingFunctions>
-                  {cat.name} <em><small>({cat.technologies.length})</small></em>
+                  {cat.Title} <em><small>({cat.Names.length})</small></em>
                 </Panel.Title>
               </Panel.Heading>
               {cat.expanded && <Panel.Body>
@@ -57,12 +64,18 @@ class Stack extends React.Component {
                   <thead>
                     <tr>
                       <th>Name</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cat.technologies.map(a =>
-                      <tr key={a.name}>
-                        <td>{a.name}</td>
+                    {cat.Names.map((name, index) =>
+                      <tr key={index}>
+                        <td>{name.Title}</td>
+                        <td>
+                          {name.Technologies.map((tech, index) => {
+                            return <span>{index > 0 ? ", " : ""}{tech}</span>
+                          })}
+                        </td>
                       </tr>
                     )}
                   </tbody>
@@ -79,4 +92,4 @@ class Stack extends React.Component {
 
 }
 
-export default observer(Stack)
+export default inject("StackStore")(observer(Stack))

@@ -64,7 +64,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ 
-      title: 'New App',
+      title: 'StackHat',
       template: './src/index.html', 
       filename: './index.html',
       favicon: './src/assets/icon.png'

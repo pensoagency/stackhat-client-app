@@ -11,7 +11,7 @@ import Version from './services/Version'
 console.log(`[APP] v${Version}`)
 
 import {
-  AuthenticationStore as auth
+  AuthenticationStore as auth, StackStore
 } from './stores'
 
 import './Styles.scss'
@@ -34,7 +34,7 @@ auth.Initialise()
   .then(() => {
 
     let stores = new Stores([
- 
+      { name: "StackStore", store: new StackStore(auth) },
     ])
 
     // render

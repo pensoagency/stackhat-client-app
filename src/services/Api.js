@@ -57,14 +57,16 @@ class Api {
     }
 
     // entities
-    this.Databases = new AxiosResource({ url: `${serviceBase}api/databases`, params: { } })
-    this.Technologies = new AxiosResource({ url: `${serviceBase}api/technologies`, params: { } })    
-    this.Categories = new AxiosResource({ url: `${serviceBase}api/categories`, params: { } })    
-    this.Names = new AxiosResource({ url: `${serviceBase}api/names`, params: { } })        
+    this.Databases = new AxiosResource({ url: `${serviceBase}databases`, params: { } })
+    this.Technologies = new AxiosResource({ url: `${serviceBase}technologies`, params: { } })    
+    this.Categories = new AxiosResource({ url: `${serviceBase}categories`, params: { } })    
 
     // cancel token
     this.GetCancelToken = () => {
       return Axios.CancelToken.source()
+    }
+    this.IsCancel = err => {
+      return Axios.isCancel(err)
     }
 
   }

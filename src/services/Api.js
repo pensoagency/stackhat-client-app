@@ -57,16 +57,10 @@ class Api {
     }
 
     // entities
-    this.Databases = new AxiosResource({ url: `${serviceBase}api/Databases`, idName: "DatabaseID", params: { } })
-
-    this.AppUsers = new AxiosResource({ url: `${serviceBase}api/AppUsers`, idName: "AppUserID", params: { } })
-    this.AppRoles = new AxiosResource({ url: `${serviceBase}api/AppRoles`, idName: "AppRoleID" })
-    this.AppUsers.ChangePassword = (oldPassword, newPassword, confirmNewPassword) => {
-      return Axios.post(`${serviceBase}api/Account/ChangePassword`, { OldPassword: oldPassword, Password: newPassword, ConfirmPassword: confirmNewPassword }, { headers: getSecurityHeader() });
-    }
-    this.AppUsers.ValidatePassword = (password) => {
-      return Axios.post(`${serviceBase}api/Account/ValidatePassword`, { Password: password })
-    }
+    this.Databases = new AxiosResource({ url: `${serviceBase}api/databases`, params: { } })
+    this.Technologies = new AxiosResource({ url: `${serviceBase}api/technologies`, params: { } })    
+    this.Categories = new AxiosResource({ url: `${serviceBase}api/categories`, params: { } })    
+    this.Names = new AxiosResource({ url: `${serviceBase}api/names`, params: { } })        
 
     // cancel token
     this.GetCancelToken = () => {

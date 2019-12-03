@@ -66,7 +66,7 @@ class AuthenticationStore {
 
     return Api.Authentication.login(type, credentials)
       .then((response, e) => {
-console.log(response)
+
         // set principal
         runInAction(() => {
           this.Principal = getPrincipal({ userName: credentials.userName }, { access_token: response.data });

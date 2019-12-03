@@ -1,5 +1,5 @@
 export default {
-  apiServiceBaseUri: "https://stackhat-api.pensoagency.com/",
+  apiServiceBaseUri: "https://stackhat-api.pensoagency.com/StackhatServer/api/",
 
   auth: {
     versionCheck: {

@@ -97,7 +97,7 @@ class Login extends React.Component {
     }
 
     return (
-      <div className="text-center">
+      <div className="text-center login">
         <form className="form-signin" onSubmit={this.login}>
           <LoginLogo />
           {mode !== "sso" && <div>
@@ -128,6 +128,8 @@ class Login extends React.Component {
             </Panel>
           </div>}
         </form>
+
+        <a href="https://pensoagency.com" tabIndex="_blank" className="penso" title="PENSO"></a>
       </div>
     )
   }

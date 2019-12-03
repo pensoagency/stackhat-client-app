@@ -3,7 +3,7 @@ export default {
   apiServiceBaseUri: "unset",
 
   clientBaseUri: "unset",
-  clientId: "ReactAppClient",
+  clientId: "PensoStackHat",
   showConfigInTitle: false,
 
   auth: {

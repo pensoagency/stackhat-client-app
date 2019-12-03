@@ -6,7 +6,7 @@ body.public {
   }
 }
 
-
+.login {
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -61,3 +61,15 @@ body.public {
 //   border-top-right-radius: 0;
 // }
 
+.penso {
+  display: block;
+  margin: 10px;
+  width: 161px;
+  height: 46px;    
+  position: fixed;
+  bottom: 15px;  
+  background: url(https://pensoagency.com/wp-content/themes/penso/library/img/PENSO.png) no-repeat;    
+}
+
+
+}

@@ -7,33 +7,35 @@ let hash = QueryString.parse(location.hash)
 
 let config = Config.get("auth")
 
-if (config.fakeAuth) {
+require('./indexApp')
 
-  // skip for local dev
-  require('./indexApp')
+// if (config.fakeAuth) {
 
-} else {
+//   // skip for local dev
+//   require('./indexApp')
 
-  require('./indexBusy')
+// } else {
 
-  let redirect_uri = window.location.href.split("?")[0].split("#")[0]
+//   require('./indexBusy')
 
-  let client = new OidcAuthenticationContext({
-    tenant_id: config.oidc.tenant_id,
-    authority: config.oidc.authority,
-    client_id: config.oidc.client_id,
-    redirect_uri: redirect_uri,
-    post_logout_redirect_uri: redirect_uri,
-    response_type: 'id_token',
-    scope: 'openid profile email',
-    filterProtocolClaims: true,
-    loadUserInfo: true
-  }, hash)
+//   let redirect_uri = window.location.href.split("?")[0].split("#")[0]
 
-  RunWithOidcClient(
-    client,
-    () => { require('./indexApp') },
-    () => { require('./indexError') }
-  )
+//   let client = new OidcAuthenticationContext({
+//     tenant_id: config.oidc.tenant_id,
+//     authority: config.oidc.authority,
+//     client_id: config.oidc.client_id,
+//     redirect_uri: redirect_uri,
+//     post_logout_redirect_uri: redirect_uri,
+//     response_type: 'id_token',
+//     scope: 'openid profile email',
+//     filterProtocolClaims: true,
+//     loadUserInfo: true
+//   }, hash)
 
-}
+//   RunWithOidcClient(
+//     client,
+//     () => { require('./indexApp') },
+//     () => { require('./indexError') }
+//   )
+
+// }

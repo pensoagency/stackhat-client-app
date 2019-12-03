@@ -18,14 +18,14 @@ class AuthenticationStore {
   Initialise() {
     let authData = getLocalStorage()
 
-    if (auth.fakeAuth) {
-      authData = getPrincipal({ userName: "Developer" }, {
-        access_token: "fake",
-        userId: "fake",
-        firstName: "Paul",
-        lastName: "Stephenson",
-      })
-    }
+    // if (auth.fakeAuth) {
+    //   authData = getPrincipal({ userName: "Developer" }, {
+    //     access_token: "fake",
+    //     userId: "fake",
+    //     firstName: "Paul",
+    //     lastName: "Stephenson",
+    //   })
+    // }
 
     return new Promise((resolve, reject) => {
 
@@ -66,18 +66,18 @@ class AuthenticationStore {
 
     return Api.Authentication.login(type, credentials)
       .then((response, e) => {
-
+console.log(response)
         // set principal
         runInAction(() => {
-          this.Principal = getPrincipal({ userName: credentials.userName }, response.data);
+          this.Principal = getPrincipal({ userName: credentials.userName }, { token: response.data });
         })
 
         // set local storage 
         setLocalStorage(this.Principal)
 
-        // load settings
-        this.Settings.Load(this.Principal.userId, this.Principal.organisation)
-          .then(() => {
+        // // load settings
+        // this.Settings.Load(this.Principal.userId, this.Principal.organisation)
+        //   .then(() => {
 
             // flag authed
             runInAction(() => {
@@ -89,15 +89,15 @@ class AuthenticationStore {
               setTimeout(success(response), 0);
             }
 
-          }).catch((err) => {
-            // sign out
-            this.SignOut();
+          // }).catch((err) => {
+          //   // sign out
+          //   this.SignOut();
 
-            // call back 
-            if (error) {
-              setTimeout(error(err.response.data), 0);
-            }
-          });
+          //   // call back 
+          //   if (error) {
+          //     setTimeout(error(err.response.data), 0);
+          //   }
+          // });
 
       }).catch((err) => {
 
@@ -162,9 +162,9 @@ function getPrincipal(loginData, response) {
       isAuth: true,
       token: response.access_token,
       userName: loginData.userName,
-      userId: response.userId,
-      firstName: response.firstName,
-      lastName: response.lastName,
+      userId: "1",
+      firstName: "Penso",
+      lastName: "Admin",
     }
     console.log("[AUTH][GP]", result)  
     return result      

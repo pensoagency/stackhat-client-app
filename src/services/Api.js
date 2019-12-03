@@ -35,14 +35,14 @@ class Api {
     this.Authentication = {
       login(type, credentials) {
         let config = { crossDomain: true, headers: { 'content-type': 'application/x-www-form-urlencoded' } }
-        switch (type) {
-          case "password":
-            return Axios.post(`${serviceBase}token`, `grant_type=password&username=${credentials.userName}&password=${credentials.password}`, config)
-          case "id_token":
-            return Axios.post(`${serviceBase}token`, `grant_type=id_token&id_token=${credentials.id_token}`, config)
-        }
+        // switch (type) {
+          // case "password":
+            return Axios.post(`${serviceBase}token`, `username=${credentials.userName}&password=${credentials.password}`, config)
+          // case "id_token":
+          //   return Axios.post(`${serviceBase}token`, `grant_type=id_token&id_token=${credentials.id_token}`, config)
+        // }
       },
-      forgotPassword(userName) { return Axios.post(`${serviceBase}api/account/forgotpassword`, { UserName: userName }); },
+      forgotPassword(userName) { return Axios.post(`${serviceBase}account/forgotpassword`, { UserName: userName }); },
       externalInfo() { return Axios.get(`${serviceBase}api/AuthInstance`, { headers: getSecurityHeader() }) },
       versionCheck() { 
         return Axios.get(`${clientBase}version.json`)

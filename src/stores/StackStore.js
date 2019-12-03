@@ -7,12 +7,16 @@ import { configure, action, observable, flow, decorate, runInAction } from 'mobx
 
 class StackStore extends StoreBase {
 
-    Items = []
-
     constructor(auth) {
         super(auth)
 
         this.Api = Api
+
+        this.Reset()
+    }
+
+    Reset() {
+        this.Items = []
     }
 
     Load = () => {

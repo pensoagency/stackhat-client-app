@@ -108,7 +108,7 @@ class Login extends React.Component {
               <Panel.Body>
                 <p>Please sign in</p>
 
-                <FieldGroup type="email" placeholder="Enter email" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
+                <FieldGroup type="text" placeholder="Enter username" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
                 <FieldGroup type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
 
                 <Button type="submit" bsStyle="primary" block>Sign in</Button>

@@ -16,7 +16,6 @@ import PrintFrame from '../components/print/PrintFrame'
 import Login from './public/Login'
 import Audit from './audit/Audit'
 import Stack from './stack/Stack'
-import Account from './account'
 import Logout from './public/Logout'
 import Password from './public/Password'
 import { ErrorBoundary } from '../components/errors';
@@ -69,8 +68,6 @@ class Master extends React.Component {
               <Route exact path='/password' component={Password} />
               <PrivateRoute path='/audit' component={Audit} />
               <PrivateRoute path='/stack' component={Stack} />
-              <PrivateRoute path='/account' component={Account} />
-              <PrivateRoute path='/account/*' component={Account} />
               <Route path='/logout' component={Logout} />
             </Switch>
           </ErrorBoundary>

@@ -17,7 +17,7 @@ let serviceBase = Config.get("apiServiceBaseUri")
 class Audit extends React.Component {
 
   state = {
-    isSubmitted: true
+    isSubmitted: false
   }
 
   constructor(props) {

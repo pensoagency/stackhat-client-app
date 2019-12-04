@@ -42,8 +42,8 @@ class TechnologyForm {
       },
       types: {
         "BuiltWithName": "text",
-        "Category": "dropdown",
-        "Name": "dropdown2",
+        "Category": "typeahead",
+        "Name": "typeahead",
       },
       values: {
       },
@@ -56,7 +56,8 @@ class TechnologyForm {
         "Name": "required",
       },
       placeholders: {
-        "Name": "(Select category first)"
+        "Category": "Select existing or enter new category...",
+        "Name": "(Specify category first...)"
       },
       hooks: {
         "Category": {
@@ -67,28 +68,29 @@ class TechnologyForm {
               let cat = find(this.stackStore.Items, { Title: e.value })
               nameField.set("extra", [...sortBy(cat.Names, n => n.Title).map(n => ({ Text: n.Title, Value: n.Title }))])
               nameField.set("disabled", false)
-              nameField.set("placeholder", "Select...")
+              nameField.set("placeholder", "Select existing or enter new name...")
             }
             else {
-              nameField.set("extra", [])
               nameField.set("disabled", true)
-              nameField.set("placeholder", "(Select a Category)")
+              nameField.set("placeholder", "(Specify category first...)")
             }
           },
-        }
+        },
+        "Name": {
+          onChange: (e) => {
+            console.log("the val", e.value)
+          },
+        },
       },
       extra: {
-        "Category": {
-          options: [],
-          display: "Title",
-          value: "Title"
-        },
-        Name: [],
+        Category: [],
+        Name: []
       }
     }
 
-    this.fieldInfo.extra.Category.options =
-      this.stackStore.Items.map(c => ({ Title: c.Title }))
+    this.fieldInfo.extra.Category =
+      sortBy(this.stackStore.Items, c => c.Title)
+      .map(c => ({ Text: c.Title, Value: c.Title }))
 
   }
 }

@@ -4,7 +4,7 @@ import { Grid, Row, Col, Panel, Button, Table } from 'react-bootstrap'
 import Config from 'react-global-configuration'
 import { observer, inject } from 'mobx-react'
 import MobxReactForm from 'mobx-react-form'
-import { sortBy } from 'lodash'
+import { sortBy, take } from 'lodash'
 import Icon from 'react-fontawesome'
 import AuditForm from './AuditForm'
 import { ItemCreatorFields } from '../../components/lists'
@@ -17,7 +17,8 @@ let serviceBase = Config.get("apiServiceBaseUri")
 class Audit extends React.Component {
 
   state = {
-    isSubmitted: false
+    isSubmitted: false,
+    takeCount: 5
   }
 
   constructor(props) {
@@ -63,7 +64,7 @@ class Audit extends React.Component {
   }
 
   render() {
-    let { isSubmitted } = this.state
+    let { isSubmitted, takeCount } = this.state
     let items = this.props.AuditStore.Items
 
     return <Grid fluid>
@@ -108,7 +109,7 @@ class Audit extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {sortBy(items, a => new Date(a.created)).reverse().map(audit =>
+                  {take(sortBy(items, a => new Date(a.created)).reverse(), takeCount).map(audit =>
                     <tr key={audit.id}>
                       <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
                       <td><strong>{audit.title}</strong><br />
@@ -122,12 +123,15 @@ class Audit extends React.Component {
                       <td className="text-center">
                         {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
                         {audit.isError && <Icon name="exclamation-triangle" />}
-                        {audit.isReady && <Button bsStyle="small" onClick={() => this.handleDownload(audit.id)}>Download</Button>}
+                        {audit.isReady && <Button bsStyle="small" onClick={() => this.handleDownload(audit.id)}><Icon name="download" /> Download Audit</Button>}
                       </td>
                     </tr>
                   )}
                 </tbody>
               </Table>
+              {items.length > takeCount && <div className="text-center">
+                <Button bsStyle="small" onClick={() => this.setState({ takeCount: takeCount+10})}>SHOW MORE</Button>
+              </div>}
             </Panel.Body>
           </Panel>
         </Col>

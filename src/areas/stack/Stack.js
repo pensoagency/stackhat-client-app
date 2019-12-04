@@ -1,7 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { Grid, Row, Col, Panel, Table, Button } from 'react-bootstrap'
-import Icon from 'react-fontawesome'
 import { observer, inject } from 'mobx-react'
 import { sortBy } from 'lodash'
 import { PanelHeadingFunctions, PanelHeadingButton } from '../../components/panels'
@@ -11,11 +9,7 @@ import { BusySpinner } from '../../components/modals'
 class Stack extends React.Component {
 
   state = {
-    showAddTechnology: false,
-    categories: [
-      { name: "CMS", expanded: false, technologies: [{ name: "SiteCore" }, { name: "Umbraco" }, { name: "WorstPress" }] },
-      { name: "CDN", expanded: false, technologies: [{ name: "Cloudflare" }, { name: "Verizon" }, { name: "Akami" }, { name: "Azure CDN" }, { name: "AWS CloudFront" }] },
-    ]
+    showAddTechnology: false
   }
 
   componentDidMount() {
@@ -28,6 +22,7 @@ class Stack extends React.Component {
 
   handleAddNewTechnology = () => {
     this.setState({ showAddTechnology: !this.state.showAddTechnology })
+    this.props.StackStore.Load()
   }
 
   render() {

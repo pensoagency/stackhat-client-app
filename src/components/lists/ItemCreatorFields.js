@@ -20,6 +20,7 @@ import {
   Evidence,
 } from '../forms'
 import ModalFormField from '../modals/ModalFormField'
+import TypeaheadInput from '../forms/TypeaheadInput'
 
 class ItemCreatorFields extends React.Component {
 
@@ -72,6 +73,8 @@ class ItemCreatorFields extends React.Component {
           return (<Number key={field.name} field={field} />)
         case "hidden":
           return (<FormControl key={field.name} {...field.bind()} />)
+        case "typeahead":
+          return (<TypeaheadInput key={field.name} field={field} />)
         default:
           return (<Input key={field.name} field={field} />)
       }

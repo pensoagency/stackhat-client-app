@@ -9,7 +9,7 @@ import Icon from 'react-fontawesome'
 import AuditForm from './AuditForm'
 import { ItemCreatorFields } from '../../components/lists'
 import { BusySpinner } from '../../components/modals'
-import { FormatDateShort } from '../../components/formatting'
+import { FormatDateShort, FormatTime } from '../../components/formatting'
 import Api from '../../services/Api'
 
 let serviceBase = Config.get("apiServiceBaseUri")
@@ -68,7 +68,7 @@ class Audit extends React.Component {
 
     return <Grid fluid>
       <Row>
-        <Col md={8} sm={12}>
+        <Col md={6} sm={12}>
           <form autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="title">
               <h1 className="h2">Create New Audit</h1>
@@ -83,8 +83,8 @@ class Audit extends React.Component {
             </div>}
             {isSubmitted && <div><Panel>
               <Panel.Body>
-                <p><strong>Audit In Progress</strong></p>
-                <p>Your audit is now being generated, please track progress via the Recent Audits list.</p>
+                <p><strong>Success!</strong></p>
+                <p>Your audit is now being generated, please track progress via the Audit History list.</p>
               </Panel.Body>
             </Panel>
               <Button onClick={() => this.setState({ isSubmitted: false })} bsStyle="primary" className="pull-right">Create Another Audit</Button>
@@ -92,9 +92,9 @@ class Audit extends React.Component {
             }
           </form>
         </Col>
-        <Col md={4} sm={12}>
+        <Col md={6} sm={12}>
           <div className="title">
-            <h1 className="h2">Recent Audits</h1>
+            <h1 className="h2">Audit History</h1>
           </div>
           <Panel>
             <Panel.Body>
@@ -110,7 +110,7 @@ class Audit extends React.Component {
                 <tbody>
                   {sortBy(items, a => new Date(a.created)).reverse().map(audit =>
                     <tr key={audit.id}>
-                      <td><FormatDateShort value={new Date(audit.created)} /></td>
+                      <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
                       <td><strong>{audit.title}</strong><br />
                         {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}
                       </td>
@@ -122,7 +122,7 @@ class Audit extends React.Component {
                       <td className="text-center">
                         {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
                         {audit.isError && <Icon name="exclamation-triangle" />}
-                        {audit.isReady && <Button bsStyle="link" onClick={() => this.handleDownload(audit.id)}>Download</Button>}
+                        {audit.isReady && <Button bsStyle="small" onClick={() => this.handleDownload(audit.id)}>Download</Button>}
                       </td>
                     </tr>
                   )}

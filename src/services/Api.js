@@ -58,6 +58,13 @@ class Api {
 
     // entities
     this.Audits = new AxiosResource({ url: `${serviceBase}audits`, params: { } })
+    this.Audits.Download = (id) => {
+      Axios.get(`${serviceBase}audits/${id}/download`, { responseType: "blob", headers: getSecurityHeader() })
+        .then((response) => {
+          FileDownload(response.data, `audit-${id}.xlsx`)
+        })
+    }
+
     this.Technologies = new AxiosResource({ url: `${serviceBase}technologies`, params: { } })    
     this.Categories = new AxiosResource({ url: `${serviceBase}categories`, params: { } })    
 

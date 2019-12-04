@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Grid, Row, Col, Panel, Button, Table } from 'react-bootstrap'
+import Config from 'react-global-configuration'
 import { observer, inject } from 'mobx-react'
 import MobxReactForm from 'mobx-react-form'
 import { sortBy } from 'lodash'
@@ -9,6 +10,9 @@ import AuditForm from './AuditForm'
 import { ItemCreatorFields } from '../../components/lists'
 import { BusySpinner } from '../../components/modals'
 import { FormatDateShort } from '../../components/formatting'
+import Api from '../../services/Api'
+
+let serviceBase = Config.get("apiServiceBaseUri")
 
 class Audit extends React.Component {
 
@@ -52,6 +56,10 @@ class Audit extends React.Component {
 
   handleSubmit = (...rest) => {
     this.form.onSubmit(...rest)
+  }
+
+  handleDownload = (id) => {
+    Api.Audits.Download(id)
   }
 
   render() {
@@ -104,7 +112,7 @@ class Audit extends React.Component {
                     <tr key={audit.id}>
                       <td><FormatDateShort value={new Date(audit.created)} /></td>
                       <td><strong>{audit.title}</strong><br />
-                        {audit.urls.map(url => <span><a href={url}>{url}</a><br /></span>)}
+                        {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}
                       </td>
                       <td>
                         {!audit.isReady && !audit.isError && <span>Creating audit</span>}
@@ -114,7 +122,7 @@ class Audit extends React.Component {
                       <td className="text-center">
                         {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
                         {audit.isError && <Icon name="exclamation-triangle" />}
-                        {audit.isReady && <a href="#">Download</a>}
+                        {audit.isReady && <Button bsStyle="link" onClick={() => this.handleDownload(audit.id)}>Download</Button>}
                       </td>
                     </tr>
                   )}
@@ -124,38 +132,6 @@ class Audit extends React.Component {
           </Panel>
         </Col>
       </Row>
-      {/* <hr />
-      <Row>
-        <Col md={8} mdOffset={2} sm={12}>
-          <div className="title">
-            <h1 className="h2">Audit History (Local Storage)</h1>
-          </div>
-          <Panel>
-            <Panel.Body>
-              <Table striped condensed hover>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Created</th>
-                    <th>Name</th>
-                    <th>ID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.audits.map(a =>
-                    <tr key={a.DatabaseID}>
-                      <td><Button>Download</Button></td>
-                      <td>{a.Created}</td>
-                      <td>{a.Name}</td>
-                      <td>{a.DatabaseID}</td>
-                    </tr>
-                  )}
-                </tbody>
-              </Table>
-            </Panel.Body>
-          </Panel>
-        </Col>
-      </Row> */}
     </Grid>
   }
 

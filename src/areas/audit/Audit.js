@@ -3,17 +3,12 @@ import { NavLink } from 'react-router-dom'
 import { Grid, Row, Col, Panel, Button, Table } from 'react-bootstrap'
 import { observer, inject } from 'mobx-react'
 import MobxReactForm from 'mobx-react-form'
+import Icon from 'react-fontawesome'
 import AuditForm from './AuditForm'
 import { ItemCreatorFields } from '../../components/lists'
+import { BusySpinner } from '../../components/modals'
 
 class Audit extends React.Component {
-
-  state = {
-    audits: [
-      { DatabaseID: "657bdf29-67a8-4cb1-b40f-7b24cf11f38d", Name: "Australian Banking Websites", Created: "2019-11-12 08:00" },
-      { DatabaseID: "c1926615-1245-4b56-94e8-776596482324", Name: "State Government Sites", Created: "2019-11-08 16:46" }
-    ]
-  }
 
   constructor(props) {
     super(props)
@@ -21,8 +16,19 @@ class Audit extends React.Component {
     this.form = new MobxReactForm(this.auditForm.fieldInfo, this.auditForm.formInfo)
   }
 
-  handleSuccess(data) {
+  componentDidMount() {
+    this.loadAudits()
+  }
 
+  loadAudits = () => {
+    this.props.AuditStore.Load()
+      .then(_ => setTimeout(this.loadAudits, 10000))
+  }
+
+  handleSuccess = (data) => {
+    // push to store
+    this.props.AuditStore.Items.push(data)
+    this.form.clear()
   }
 
   handleSubmit = (...rest) => {
@@ -47,19 +53,42 @@ class Audit extends React.Component {
           </form>
         </Col>
         <Col md={4} sm={12}>
-            <div className="title">
-              <h1 className="h2">Recent Audits</h1>
-            </div>
-            <Panel>
-              <Panel.Body>
-                <Table striped condensed hover>
-                  {/* <tr>
-
-                  </tr> */}
-                </Table>
-              </Panel.Body>
-            </Panel>
-          </Col>
+          <div className="title">
+            <h1 className="h2">Recent Audits</h1>
+          </div>
+          <Panel>
+            <Panel.Body>
+              <Table striped condensed hover>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.AuditStore.Items.map(audit =>
+                    <tr key={audit.id}>
+                      <td><strong>{audit.title}</strong><br />
+                        {audit.urls.map(url => <span><a href={url}>{url}</a><br /></span>)}
+                      </td>
+                      <td>
+                        {!audit.isReady && !audit.isError && <span>Creating audit</span>}
+                        {audit.isError && <span>Error occurred</span>}
+                        {audit.isReady && <span>Complete</span>}
+                      </td>
+                      <td>
+                      {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
+                        {audit.isError && <Icon name="exclamation-triangle" />}
+                        {audit.isReady && <a href="#">Download</a>}
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </Panel.Body>
+          </Panel>
+        </Col>
       </Row>
       {/* <hr />
       <Row>
@@ -98,4 +127,4 @@ class Audit extends React.Component {
 
 }
 
-export default observer(Audit)
+export default inject("AuditStore")(observer(Audit))

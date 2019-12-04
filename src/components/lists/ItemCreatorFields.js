@@ -5,6 +5,7 @@ import { FormControl } from 'react-bootstrap'
 import {
   Input,
   DropDown,
+  DropDown2,  
   DatePicker,
   TagsInput,
   OrganisationPicker,
@@ -60,6 +61,8 @@ class ItemCreatorFields extends React.Component {
           return (<TagsInput key={field.name} field={field} {...field.extra} />)
         case "dropdown":
           return (<DropDown key={field.name} field={field} />)
+          case "dropdown2":
+            return (<DropDown2 key={field.name} field={field} />)          
         case "select":
         case "checkboxes":
           return (<ModalFormField key={field.name} field={field} />)

@@ -1,10 +1,12 @@
 import dvr from 'mobx-react-form/lib/validators/DVR'
 import ValidatorJS from 'validatorjs'
+import { find, sortBy } from 'lodash'
 import Api from '../../../services/Api'
 
 class TechnologyForm {
 
-  constructor(onSuccess) {
+  constructor(stackStore, onSuccess) {
+    this.stackStore = stackStore
     this.onSuccess = onSuccess
     this.init()
   }
@@ -41,7 +43,7 @@ class TechnologyForm {
       types: {
         "BuiltWithName": "text",
         "Category": "dropdown",
-        "Name": "dropdown",
+        "Name": "dropdown2",
       },
       values: {
       },
@@ -52,15 +54,27 @@ class TechnologyForm {
       },
       placeholders: {
       },
+      hooks: {
+        "Category": {
+          onChange: (e) => {
+              let cat = find(this.stackStore.Items, { Title: e.value })
+              let nameField = e.container().$("Name")
+              nameField.set("extra", [...sortBy(cat.Names, n => n.Title).map(n => ({ Text: n.Title, Value: n.Title }))])
+          },
+        }
+      },      
       extra: {
         "Category": {
-          options: []
+          options: [],
+          display: "Title",
+          value: "Title"
         },   
-        "Name": {
-          options: []
-        },        
+        Name: [],        
       }
     }
+
+    this.fieldInfo.extra.Category.options = 
+      this.stackStore.Items.map(c => ({ Title: c.Title }))
 
   }
 }

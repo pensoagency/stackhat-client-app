@@ -13,7 +13,7 @@ class TechnologyModal extends EditorModal {
   }
 
   componentDidMount() {
-    this.editorForm = new TechnologyForm(this.props.onHide)
+    this.editorForm = new TechnologyForm(this.props.StackStore, this.props.onHide)
     this.form = new MobxReactForm(this.editorForm.fieldInfo, this.editorForm.formInfo)
 
     this.setState({ isLoading: false })
@@ -52,4 +52,4 @@ class TechnologyModal extends EditorModal {
 
 }
 
-export default TechnologyModal
+export default inject("StackStore")(observer(TechnologyModal))

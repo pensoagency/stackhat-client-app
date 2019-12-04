@@ -22,7 +22,7 @@ class TechnologyForm {
           let data = form.values()
 
           // send request to API
-          Api.Technologies.create(data)
+          Api.Technologies.create({ category: data.Category, name: data.Name, technology: data.BuiltWithName })
             .then(result => this.onSuccess(result))
 
         }
@@ -33,12 +33,12 @@ class TechnologyForm {
       fields: [
         "BuiltWithName",
         "Category",
-        "Name",        
+        "Name",
       ],
       labels: {
         "BuiltWithName": "BuiltWith Name",
-        "Category": "Category",        
-        "Name": "PENSO Name",        
+        "Category": "Category",
+        "Name": "PENSO Name",
       },
       types: {
         "BuiltWithName": "text",
@@ -47,33 +47,47 @@ class TechnologyForm {
       },
       values: {
       },
+      disabled: {
+        "Name": true
+      },
       rules: {
         "BuiltWithName": "required|string",
         "Category": "required",
         "Name": "required",
       },
       placeholders: {
+        "Name": "(Select category first)"
       },
       hooks: {
         "Category": {
           onChange: (e) => {
+            let nameField = e.container().$("Name")
+            nameField.clear()            
+            if (e.value) {
               let cat = find(this.stackStore.Items, { Title: e.value })
-              let nameField = e.container().$("Name")
               nameField.set("extra", [...sortBy(cat.Names, n => n.Title).map(n => ({ Text: n.Title, Value: n.Title }))])
+              nameField.set("disabled", false)
+              nameField.set("placeholder", "Select...")
+            }
+            else {
+              nameField.set("extra", [])
+              nameField.set("disabled", true)
+              nameField.set("placeholder", "(Select a Category)")
+            }
           },
         }
-      },      
+      },
       extra: {
         "Category": {
           options: [],
           display: "Title",
           value: "Title"
-        },   
-        Name: [],        
+        },
+        Name: [],
       }
     }
 
-    this.fieldInfo.extra.Category.options = 
+    this.fieldInfo.extra.Category.options =
       this.stackStore.Items.map(c => ({ Title: c.Title }))
 
   }

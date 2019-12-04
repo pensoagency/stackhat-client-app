@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Grid, Row, Col, Panel, Table, Button } from 'react-bootstrap'
 import Icon from 'react-fontawesome'
 import { observer, inject } from 'mobx-react'
+import { sortBy } from 'lodash'
 import { PanelHeadingFunctions, PanelHeadingButton } from '../../components/panels'
 import TechnologyModal from './modals/TechnologyModal'
 import { BusySpinner } from '../../components/modals'
@@ -60,21 +61,23 @@ class Stack extends React.Component {
                 </Panel.Title>
               </Panel.Heading>
               {cat.expanded && <Panel.Body>
-                <Table striped condensed hover>
+                <Table striped condensed hover className="stack-names">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th></th>
+                      <th className="name">Name</th>
+                      <th className="technologies"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {cat.Names.map((name, index) =>
-                      <tr key={index}>
-                        <td>{name.Title}</td>
-                        <td>
-                          {name.Technologies.map((tech, index) => {
-                            return <span>{index > 0 ? ", " : ""}{tech}</span>
+                    {sortBy(cat.Names, n => n.Title).map((name, nameIndex) =>
+                      <tr key={nameIndex}>
+                        <td><strong>{name.Title}</strong></td>
+                        <td className="text-right">
+                          <small>
+                          {sortBy(name.Technologies).map((tech, techIndex) => {
+                            return <span key={techIndex}>{techIndex > 0 ? ", " : ""}{tech}</span>
                           })}
+                          </small>
                         </td>
                       </tr>
                     )}

@@ -7,7 +7,7 @@ export default observer(({ field }) => (
   <FormGroup>
     {field.label && <ControlLabel>{field.label} <FieldRequiredIndicator field={field} /></ControlLabel>}
     <FormControl componentClass="select" {...field.bind()}>
-      <option value="">Select...</option>
+      <option value="">{field.placeholder ? field.placeholder : "Select..."}</option>
       {
         field.extra.map((option, index) => {
           return (

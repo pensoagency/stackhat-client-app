@@ -2,7 +2,7 @@ import { extend } from 'lodash'
 import AuthenticationStore from '../stores/AuthenticationStore';
 import Axios from 'axios'
 
-const configBase = { url: null, idName: null, params: null, writeStripArrayAndCommonProps: true }
+const configBase = { url: null, idName: null, params: null, writeStripArrayAndCommonProps: false }
 const commonProps = ["UserInfo","IsInactive"]
 
 class Resource {

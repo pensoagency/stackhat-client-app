@@ -57,7 +57,7 @@ class Api {
     }
 
     // entities
-    this.Databases = new AxiosResource({ url: `${serviceBase}databases`, params: { } })
+    this.Audits = new AxiosResource({ url: `${serviceBase}audits`, params: { } })
     this.Technologies = new AxiosResource({ url: `${serviceBase}technologies`, params: { } })    
     this.Categories = new AxiosResource({ url: `${serviceBase}categories`, params: { } })    
 

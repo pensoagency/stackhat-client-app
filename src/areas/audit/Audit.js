@@ -25,12 +25,16 @@ class Audit extends React.Component {
 
   }
 
+  handleSubmit = (...rest) => {
+    this.form.onSubmit(...rest)
+  }
+
   render() {
 
     return <Grid fluid>
       <Row>
-        <Col md={8} mdOffset={2} sm={12}>
-          <form autoComplete="off">
+        <Col md={8} sm={12}>
+          <form autoComplete="off" onSubmit={this.handleSubmit}>
             <div className="title">
               <h1 className="h2">Create New Audit</h1>
             </div>
@@ -39,9 +43,23 @@ class Audit extends React.Component {
                 <ItemCreatorFields form={this.form} fields={this.auditForm.fieldInfo.fields} />
               </Panel.Body>
             </Panel>
-            <Button bsStyle="primary" className="pull-right">Create Audit</Button>
+            <Button onClick={this.handleSubmit} bsStyle="primary" className="pull-right">Create Audit</Button>
           </form>
         </Col>
+        <Col md={4} sm={12}>
+            <div className="title">
+              <h1 className="h2">Recent Audits</h1>
+            </div>
+            <Panel>
+              <Panel.Body>
+                <Table striped condensed hover>
+                  {/* <tr>
+
+                  </tr> */}
+                </Table>
+              </Panel.Body>
+            </Panel>
+          </Col>
       </Row>
       {/* <hr />
       <Row>

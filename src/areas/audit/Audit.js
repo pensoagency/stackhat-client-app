@@ -3,12 +3,18 @@ import { NavLink } from 'react-router-dom'
 import { Grid, Row, Col, Panel, Button, Table } from 'react-bootstrap'
 import { observer, inject } from 'mobx-react'
 import MobxReactForm from 'mobx-react-form'
+import { sortBy } from 'lodash'
 import Icon from 'react-fontawesome'
 import AuditForm from './AuditForm'
 import { ItemCreatorFields } from '../../components/lists'
 import { BusySpinner } from '../../components/modals'
+import { FormatDateShort } from '../../components/formatting'
 
 class Audit extends React.Component {
+
+  state = {
+    isSubmitted: true
+  }
 
   constructor(props) {
     super(props)
@@ -17,18 +23,31 @@ class Audit extends React.Component {
   }
 
   componentDidMount() {
-    this.loadAudits()
+    this.props.AuditStore.Load()
+    this.startLoads()
+  }
+  componentWillUnmount() {
+    this.stopLoads()
+  }
+
+  startLoads = () => {
+    this.loadAuditsTimeout = setTimeout(this.loadAudits, 10000)
+  }
+  stopLoads = () => {
+    this.loadAuditsTimeout = null
   }
 
   loadAudits = () => {
+    this.stopLoads()
     this.props.AuditStore.Load()
-      .then(_ => setTimeout(this.loadAudits, 10000))
+      .then(_ => this.startLoads())
   }
 
   handleSuccess = (data) => {
-    // push to store
-    this.props.AuditStore.Items.push(data)
-    this.form.clear()
+    // load store
+    this.loadAudits()
+    this.form.reset()
+    this.setState({ isSubmitted: true })
   }
 
   handleSubmit = (...rest) => {
@@ -36,6 +55,8 @@ class Audit extends React.Component {
   }
 
   render() {
+    let { isSubmitted } = this.state
+    let items = this.props.AuditStore.Items
 
     return <Grid fluid>
       <Row>
@@ -44,12 +65,23 @@ class Audit extends React.Component {
             <div className="title">
               <h1 className="h2">Create New Audit</h1>
             </div>
-            <Panel>
+            {!isSubmitted && <div>
+              <Panel>
+                <Panel.Body>
+                  <ItemCreatorFields form={this.form} fields={this.auditForm.fieldInfo.fields} />
+                </Panel.Body>
+              </Panel>
+              <Button onClick={this.handleSubmit} bsStyle="primary" className="pull-right">Create Audit</Button>
+            </div>}
+            {isSubmitted && <div><Panel>
               <Panel.Body>
-                <ItemCreatorFields form={this.form} fields={this.auditForm.fieldInfo.fields} />
+                <p><strong>Audit In Progress</strong></p>
+                <p>Your audit is now being generated, please track progress via the Recent Audits list.</p>
               </Panel.Body>
             </Panel>
-            <Button onClick={this.handleSubmit} bsStyle="primary" className="pull-right">Create Audit</Button>
+              <Button onClick={() => this.setState({ isSubmitted: false })} bsStyle="primary" className="pull-right">Create Another Audit</Button>
+            </div>
+            }
           </form>
         </Col>
         <Col md={4} sm={12}>
@@ -61,14 +93,16 @@ class Audit extends React.Component {
               <Table striped condensed hover>
                 <thead>
                   <tr>
+                    <th>Created</th>
                     <th>Title</th>
                     <th>Status</th>
                     <th>&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.AuditStore.Items.map(audit =>
+                  {sortBy(items, a => new Date(a.created)).reverse().map(audit =>
                     <tr key={audit.id}>
+                      <td><FormatDateShort value={new Date(audit.created)} /></td>
                       <td><strong>{audit.title}</strong><br />
                         {audit.urls.map(url => <span><a href={url}>{url}</a><br /></span>)}
                       </td>
@@ -77,8 +111,8 @@ class Audit extends React.Component {
                         {audit.isError && <span>Error occurred</span>}
                         {audit.isReady && <span>Complete</span>}
                       </td>
-                      <td>
-                      {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
+                      <td className="text-center">
+                        {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
                         {audit.isError && <Icon name="exclamation-triangle" />}
                         {audit.isReady && <a href="#">Download</a>}
                       </td>

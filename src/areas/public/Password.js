@@ -38,7 +38,7 @@ class Password extends React.Component {
 
     return (
 
-      <div className="text-center">
+      <div className="text-center login">
         <form className="form-signin" onSubmit={this.handleSubmit}>
           <LoginLogo />
 

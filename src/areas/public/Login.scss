@@ -7,69 +7,77 @@ body.public {
 }
 
 .login {
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 40px auto;
+  .form-signin {
+    width: 100%;
+    padding: 15px;
+    margin: 40px auto;
 
-  .login-logo {
-    color: #fff;
-    margin-left: -22px;
-
-    img {      
-      display: inline-block;
-      margin-right: 10px;
+    @media (min-width: $breakpoint-small) {
+      max-width: 380px;    
     }
 
-    .login-logo__title {
-      display: inline-block;
-      font-size: 28px;
-      font-weight: bold;
-      line-height: 48px;
-      vertical-align: middle;
+    .login-logo {
+      color: #fff;
+      margin-left: -22px;
+      margin-bottom: 30px;
 
-      .login-logo__shade {
-        font-size: 28px;
-        font-weight: normal;
-        color: #aaa;
+      img {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      .login-logo__title {
+        display: inline-block;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 48px;
+        vertical-align: middle;
+
+        .login-logo__shade {
+          font-size: 36px;
+          font-weight: normal;
+          color: #aaa;
+        }
       }
     }
   }
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
 
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-// .form-signin input[type="email"] {
-//   margin-bottom: -1px;
-//   border-bottom-right-radius: 0;
-//   border-bottom-left-radius: 0;
-// }
-// .form-signin input[type="password"] {
-//   margin-bottom: 10px;
-//   border-top-left-radius: 0;
-//   border-top-right-radius: 0;
-// }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
 
-.penso {
-  display: block;
-  margin: 10px;
-  width: 161px;
-  height: 46px;    
-  position: fixed;
-  bottom: 15px;  
-  background: url(https://pensoagency.com/wp-content/themes/penso/library/img/PENSO.png) no-repeat;    
-}
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+
+  }
+
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+
+  // .form-signin input[type="email"] {
+  //   margin-bottom: -1px;
+  //   border-bottom-right-radius: 0;
+  //   border-bottom-left-radius: 0;
+  // }
+  // .form-signin input[type="password"] {
+  //   margin-bottom: 10px;
+  //   border-top-left-radius: 0;
+  //   border-top-right-radius: 0;
+  // }
+
+  .penso {
+    display: block;
+    margin: 10px;
+    width: 161px;
+    height: 46px;
+    position: fixed;
+    bottom: 15px;
+    background: url(https://pensoagency.com/wp-content/themes/penso/library/img/PENSO.png) no-repeat;
+  }
 
 
 }

@@ -57,7 +57,7 @@ class Login extends React.Component {
         document.body.className = ""
       },
       error: (error) => {
-        Notify.error(error.error_description)
+        Notify.error(error)
       }
     });
   }
@@ -115,7 +115,7 @@ class Login extends React.Component {
               </Panel.Body>
             </Panel>
 
-            <Link to="/password">Forgot password?</Link>
+            {/* <Link to="/password">Forgot password?</Link> */}
           </div>}
           {mode === "sso" && <div>
             <Panel>

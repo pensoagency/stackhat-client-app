@@ -65,29 +65,33 @@ class AuthenticationStore {
   Authenticate({ type, credentials, success, error }) {
 
     return Api.Authentication.login(type, credentials)
-      .then((response, e) => {
+      .then((response) => {
 
-        // set principal
-        runInAction(() => {
-          this.Principal = getPrincipal({ userName: credentials.userName }, { access_token: response.data });
-        })
+        if (response && response.response && response.response.status === 403) {
+          setTimeout(error("Username or password incorrect"), 0)
+        } else {
 
-        // set local storage 
-        setLocalStorage(this.Principal)
+          // set principal
+          runInAction(() => {
+            this.Principal = getPrincipal({ userName: credentials.userName }, { access_token: response.data });
+          })
 
-        // // load settings
-        // this.Settings.Load(this.Principal.userId, this.Principal.organisation)
-        //   .then(() => {
+          // set local storage 
+          setLocalStorage(this.Principal)
 
-            // flag authed
-            runInAction(() => {
-              this.IsAuthenticated = true
-            })
+          // // load settings
+          // this.Settings.Load(this.Principal.userId, this.Principal.organisation)
+          //   .then(() => {
 
-            // call back 
-            if (success) {
-              setTimeout(success(response), 0);
-            }
+          // flag authed
+          runInAction(() => {
+            this.IsAuthenticated = true
+          })
+
+          // call back 
+          if (success) {
+            setTimeout(success(response), 0);
+          }
 
           // }).catch((err) => {
           //   // sign out
@@ -98,6 +102,7 @@ class AuthenticationStore {
           //     setTimeout(error(err.response.data), 0);
           //   }
           // });
+        }
 
       }).catch((err) => {
 
@@ -108,10 +113,10 @@ class AuthenticationStore {
 
         // call back 
         if (error) {
-          setTimeout(error(message), 0);
+          setTimeout(error(message), 0)
         }
 
-      });
+      })
 
   }
 
@@ -133,7 +138,7 @@ class AuthenticationStore {
 
   RedirectLogin(reason) {
     this.SignOut()
-    location.href = `/?reason=${reason}`    
+    location.href = `/?reason=${reason}`
   }
 
   IsInRole(name) {
@@ -142,7 +147,7 @@ class AuthenticationStore {
   }
 
   IsUser(id) {
-    if (!id) return false   
+    if (!id) return false
     return this.Principal.userId === id
   }
 
@@ -166,14 +171,14 @@ function getPrincipal(loginData, response) {
       firstName: "Penso",
       lastName: "Admin",
     }
-    console.log("[AUTH][GP]", result)  
-    return result      
+    console.log("[AUTH][GP]", result)
+    return result
   }
 }
 function getLocalStorage() {
   let result = LocalStorage.get('PrincipalData')
   if (result)
-    console.log("[AUTH][LS]", result)    
+    console.log("[AUTH][LS]", result)
   return result
 }
 function setLocalStorage(data) {

@@ -25,6 +25,6 @@ There are additional local configuration that use the test, demo and live instan
 
 `npm run devtest`
 `npm run devdemo`
-`npm run devlive`
+`npm run prodtest`
 
 See the ~/src/config folder for the various environment configurations.

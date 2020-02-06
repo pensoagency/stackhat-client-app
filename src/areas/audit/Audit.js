@@ -63,6 +63,10 @@ class Audit extends React.Component {
     Api.Audits.Download(id)
   }
 
+  handleToggleLog = (audit) => {
+    audit.showLog = !audit.showLog
+  }
+
   render() {
     let { isSubmitted, takeCount } = this.state
     let items = this.props.AuditStore.Items
@@ -106,31 +110,44 @@ class Audit extends React.Component {
                     <th>Title</th>
                     <th>Status</th>
                     <th>&nbsp;</th>
+                    <th>&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
                   {take(sortBy(items, a => new Date(a.created)).reverse(), takeCount).map(audit =>
-                    <tr key={audit.id}>
-                      <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
-                      <td><strong>{audit.title}</strong><br />
-                        {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}
-                      </td>
-                      <td>
-                        {!audit.isReady && !audit.isError && <span>Creating audit</span>}
-                        {audit.isError && <span>Error occurred</span>}
-                        {audit.isReady && <span>Complete</span>}
-                      </td>
-                      <td className="text-center">
-                        {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
-                        {audit.isError && <Icon name="exclamation-triangle" />}
-                        {audit.isReady && <Button bsStyle="small" onClick={() => this.handleDownload(audit.id)}><Icon name="download" /> Download Audit</Button>}
-                      </td>
-                    </tr>
+                    <React.Fragment>
+                      <tr key={audit.id}>
+                        <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
+                        <td><strong>{audit.title}</strong><br />
+                          {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}
+                        </td>
+                        <td>
+                          {!audit.isReady && !audit.isError && <span>Creating audit</span>}
+                          {audit.isError && <span>Error occurred</span>}
+                          {audit.isReady && <span>Complete</span>}
+                        </td>
+                        <td className="text-right">
+                          {!audit.isReady && !audit.isError && <span className="list-spinner"><BusySpinner /></span>}
+                          {audit.isError && <Icon name="exclamation-triangle" />}
+                          {audit.isReady && <Button bsStyle="small" onClick={() => this.handleDownload(audit.id)}><Icon name="download" /> Download Audit</Button>}
+                        </td>
+                        <td><Button title="Toggle log" onClick={() => this.handleToggleLog(audit)}><Icon name={audit.showLog ? "angle-double-up" : "angle-double-down"} /></Button></td>
+                      </tr>
+                      {audit.showLog &&
+                        <tr>
+                          <td colSpan="5">
+                            <ul>
+                              {audit.log.map(item => <li>{item}</li>)}
+                            </ul>
+                          </td>
+                        </tr>
+                      }
+                    </React.Fragment>
                   )}
                 </tbody>
               </Table>
               {items.length > takeCount && <div className="text-center">
-                <Button bsStyle="small" onClick={() => this.setState({ takeCount: takeCount+10})}>SHOW MORE</Button>
+                <Button bsStyle="small" onClick={() => this.setState({ takeCount: takeCount + 10 })}>SHOW MORE</Button>
               </div>}
             </Panel.Body>
           </Panel>

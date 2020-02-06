@@ -1,6 +1,7 @@
 import StoreBase from './StoreBase'
 import Api from '../services/Api'
 import Notify from '../services/Notify'
+import { find } from 'lodash'
 import { configure, action, observable, flow, decorate, runInAction } from 'mobx'
 
 // configure({ enforceActions: "observed" })
@@ -34,6 +35,14 @@ class AuditStore extends StoreBase {
                 runInAction(() => {
                     if (response) {
                         //this.Total = response.$_total
+                        this.Items.map(item => {
+                            if (item.showLog) {
+                                let match = find(response, { id: item.id })
+                                if (match)
+                                    match.showLog = true
+                            }
+                        })
+
                         this.Items = response
                     }
                 })

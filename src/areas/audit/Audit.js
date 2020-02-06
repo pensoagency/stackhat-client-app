@@ -70,6 +70,7 @@ class Audit extends React.Component {
   render() {
     let { isSubmitted, takeCount } = this.state
     let items = this.props.AuditStore.Items
+    let hasBusy = this.props.AuditStore.HasBusy
 
     return <Grid fluid>
       <Row>
@@ -78,7 +79,7 @@ class Audit extends React.Component {
             <div className="title">
               <h1 className="h2">Create New Audit</h1>
             </div>
-            {!isSubmitted && <div>
+            {!isSubmitted && !hasBusy && <div>
               <Panel>
                 <Panel.Body>
                   <ItemCreatorFields form={this.form} fields={this.auditForm.fieldInfo.fields} />
@@ -86,14 +87,17 @@ class Audit extends React.Component {
               </Panel>
               <Button onClick={this.handleSubmit} bsStyle="primary" className="pull-right">Create Audit</Button>
             </div>}
-            {isSubmitted && <div><Panel>
-              <Panel.Body>
-                <p><strong>Success!</strong></p>
-                <p>Your audit is now being generated, please track progress via the Audit History list.</p>
-              </Panel.Body>
-            </Panel>
-              <Button onClick={() => this.setState({ isSubmitted: false })} bsStyle="primary" className="pull-right">Create Another Audit</Button>
-            </div>
+            {(isSubmitted || hasBusy) &&
+              <div>
+                <Panel>
+                  <Panel.Body>
+                    <p><strong>Success!</strong></p>
+                    <p>Your audit is now being generated, please track progress via the Audit History list.</p>
+                    <p>You must wait for the current audit in progress to complete before creating another.</p>
+                  </Panel.Body>
+                </Panel>
+                <Button onClick={() => this.setState({ isSubmitted: false })} bsStyle="primary" disabled={hasBusy} className="pull-right">{hasBusy ? "Audit in progress..." : "Create Another Audit"}</Button>
+              </div>
             }
           </form>
         </Col>
@@ -115,8 +119,8 @@ class Audit extends React.Component {
                 </thead>
                 <tbody>
                   {take(sortBy(items, a => new Date(a.created)).reverse(), takeCount).map(audit =>
-                    <React.Fragment>
-                      <tr key={audit.id}>
+                    <React.Fragment key={audit.id}>
+                      <tr>
                         <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
                         <td><strong>{audit.title}</strong><br />
                           {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}

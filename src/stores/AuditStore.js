@@ -18,6 +18,7 @@ class AuditStore extends StoreBase {
 
     Reset() {
         this.Items = []
+        this.HasBusy = false
     }
 
     Load = () => {
@@ -34,6 +35,14 @@ class AuditStore extends StoreBase {
 
                 runInAction(() => {
                     if (response) {
+                        let hasBusy = false                        
+                        response.map(item => {
+                            if (!item.isReady && !item.isError) {
+                                hasBusy = true
+                            }
+                        })
+                        this.HasBusy = hasBusy                        
+
                         //this.Total = response.$_total
                         this.Items.map(item => {
                             if (item.showLog) {
@@ -59,7 +68,8 @@ class AuditStore extends StoreBase {
 }
 
 decorate(AuditStore, {
-    Items: observable
+    Items: observable,
+    HasBusy: observable
 })
 
 export default AuditStore

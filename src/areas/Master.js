@@ -63,7 +63,7 @@ class Master extends React.Component {
         <Theme />
         <Header />
         <div className="main container-fluid">
-          <Grid fluid>
+          {isAuth && <Grid fluid>
             <Row>
               <Col md={12}>
                 <Alert bsStyle="warning" className="text-center">
@@ -71,7 +71,7 @@ class Master extends React.Component {
                 </Alert>
               </Col>
             </Row>
-          </Grid>
+          </Grid>}
           <ErrorBoundary>
             <Switch>
               <Route exact path='/' component={Login} />

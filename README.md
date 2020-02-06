@@ -28,3 +28,11 @@ There are additional local configuration that use the test, demo and live instan
 `npm run prodtest`
 
 See the ~/src/config folder for the various environment configurations.
+
+## Deployment
+
+After running `npm run dist` or `npm run prod`, the files in ./dist must be uploaded to the S3 bucket named `stackhat` hosting the client application.
+
+The stackhat CloudFront distribution ID `E1APPLI1ZYV37D` needs to be invalidated. Copy an existing /* invalidation and wait for that to complete. 
+
+The application is now updated.

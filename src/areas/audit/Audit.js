@@ -137,6 +137,7 @@ class Audit extends React.Component {
                         <tr>
                           <td colSpan="5">
                             <ul>
+                              {!audit.log.length && <em>Loading...</em>}
                               {audit.log.map(item => <li>{item}</li>)}
                             </ul>
                           </td>

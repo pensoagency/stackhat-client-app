@@ -1,6 +1,7 @@
 import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import { Switch, Route } from 'react-router-dom'
+import { Grid, Row, Col, Alert } from 'react-bootstrap'
 import { inject } from 'mobx-react'
 import IdleTimer from 'react-idle-timer'
 import Config from 'react-global-configuration'
@@ -62,6 +63,15 @@ class Master extends React.Component {
         <Theme />
         <Header />
         <div className="main container-fluid">
+          <Grid fluid>
+            <Row>
+              <Col md={12}>
+                <Alert bsStyle="warning" className="text-center">
+                  <strong>Warning! Single user at a time!</strong><br />Due to the backend use of Excel documents as the data store, only a single user can safely operate this application at any one time. Multiple concurrent users can bork the data store.
+                </Alert>
+              </Col>
+            </Row>
+          </Grid>
           <ErrorBoundary>
             <Switch>
               <Route exact path='/' component={Login} />

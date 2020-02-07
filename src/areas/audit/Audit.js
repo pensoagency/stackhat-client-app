@@ -123,7 +123,7 @@ class Audit extends React.Component {
                       <tr>
                         <td><FormatDateShort value={new Date(audit.created)} /><br /><FormatTime value={new Date(audit.created)} /></td>
                         <td><strong>{audit.title}</strong><br />
-                          {audit.urls.map((url, uidx) => <span key={uidx}><a href={url}>{url}</a><br /></span>)}
+                          {audit.urls.map((url, uidx) => <span key={uidx}><a href={url} target="_blank">{url}</a><br /></span>)}
                         </td>
                         <td>
                           {!audit.isReady && !audit.isError && <span>Creating audit</span>}

@@ -67,7 +67,9 @@ class Master extends React.Component {
             <Row>
               <Col md={12}>
                 <Alert bsStyle="warning" className="text-center">
-                  <strong>Warning! Single user at a time!</strong><br />Due to the backend use of Excel documents as the data store, only a single user can safely operate this application at any one time. Multiple concurrent users can bork the data store.
+                  <strong>Warning! Single user at a time!</strong><br />
+                  Due to the backend use of Excel documents as the data store, only a single user can safely operate this application at any one time. 
+                  Concurrent users are highly likely to bork the data store.
                 </Alert>
               </Col>
             </Row>

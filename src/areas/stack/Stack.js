@@ -26,9 +26,10 @@ class Stack extends React.Component {
   }
 
   render() {
-    let { StackStore } = this.props
+    let { StackStore, AuditStore } = this.props
 
     let isBusy = StackStore.IsLoading
+    let hasBusyAudit = AuditStore.HasBusy
 
     return <Grid fluid>
       <Row>
@@ -37,7 +38,7 @@ class Stack extends React.Component {
           <div className="title">
             <div className="title-buttons">
               <Button disabled>Reorder Categories</Button>
-              <Button bsStyle="primary" onClick={this.handleAddNewTechnology}>Add New Technology</Button>
+              <Button disabled={hasBusyAudit} bsStyle="primary" onClick={this.handleAddNewTechnology}>{hasBusyAudit ? "Audit in progress..." : "Add New Technology"}</Button>
             </div>
             <h1 className="h2">Manage Stack</h1>
           </div>
@@ -90,4 +91,4 @@ class Stack extends React.Component {
 
 }
 
-export default inject("StackStore")(observer(Stack))
+export default inject("AuditStore", "StackStore")(observer(Stack))
